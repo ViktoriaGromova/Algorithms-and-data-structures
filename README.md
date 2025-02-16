@@ -1,6 +1,6 @@
 # Algorithms-and-data-structures
 
-## 1. (Binary Search)[https://github.com/ViktoriaGromova/Algorithms-and-data-structures/tree/main/BinarySearch]
+## 1. [Binary Search](https://github.com/ViktoriaGromova/Algorithms-and-data-structures/tree/main/BinarySearch)
 
 ## Build 
 ```bash
