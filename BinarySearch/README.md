@@ -6,14 +6,3 @@ Binary search works on sorted arrays. Binary search begins by comparing an eleme
 Average Time Complexity: O(log n)  
 Data Structure: Array  
 Space Complexity: O(1)  
-
-## Build 
-```bash
-mkdir build
-cmake ..
-make --jobs=$(nproc --all)
-```
-
-## Test  
-
-To build and run tests, add the `-DENABLE_TESTS=ON` flag when building. 
