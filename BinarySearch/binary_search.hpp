@@ -2,6 +2,10 @@
 
 void binarySearch(int *arr, const size_t size, int target)
 {
+    if (size == 0 || arr == nullptr) {
+        throw std::invalid_argument("Array is empty"); 
+    }
+
     size_t left = 0;
     size_t right = size - 1;
 
