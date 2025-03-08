@@ -1,47 +1,50 @@
 #include <iostream>
-#include <ctime>
+#include <random>
 
-void  Partition(){
-    
+void swap(int& a, int& b){
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
+std::pair<size_t, size_t> partition(int *arr, const size_t size, const int pivot)
+{
+    size_t i = 0;
+    for (size_t j = 0; j < size; ++j)
+    {
+        if(arr[j] < pivot){
+            swap(arr[j], arr[i]);
+            ++i;
+        }
+    }
 
-void quickSort(int *arr, const size_t size){
-    if (size <= 1){
+    size_t k = i, n = i;
+    while(n < size){
+        if(arr[n] == pivot && arr[k] != pivot){
+            swap(arr[k], arr[n]);
+            ++k;
+        }
+        ++n;
+    }
+    return {i, k};
+}
+
+void quickSort(int *arr, const size_t size)
+{
+    if (size <= 1)
+    {
         return;
     }
 
-    int x = arr[rand() % (size - 1)];
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, size - 1);
 
-}
+    int pivot = arr[dis(gen)];
 
-int main()
-{
-    srand(time(0));
-    const size_t size = 5;
-    int staticArr[] = {1, 8, 3, 5, 9};
-    int *arr = new int[size];
-
-    for (size_t i = 0; i < size; ++i)
-    {
-        arr[i] = 1 + rand() % 100;
-    }
-
-    std::cout << "Before sort: [ ";
-    for (size_t i = 0; i < size; ++i)
-    {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << "]" << std::endl;
-
-    quickSort(arr, size);
-    std::cout << "After sort: [ ";
-    for (size_t i = 0; i < size; ++i)
-    {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << "]" << std::endl;
-
-    delete[] arr;
-    return 0;
+    std::pair<size_t, size_t> indices = partition(arr, size, pivot);
+    size_t i = indices.first;
+    size_t j = indices.second;
+    quickSort(arr, i);
+    quickSort(arr + j, size - j);
 }
